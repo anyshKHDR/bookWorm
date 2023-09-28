@@ -14,12 +14,6 @@ const App = ()=>{
     useEffect(() => {
         axios.get("http://localhost:3001/")
         .then((response) =>{
-            // ---------------------------------------------------------
-            // checking if I can hold the data inside the nested object
-                    // const [{users: [{user}]}]= response.data;
-                    // console.log(user);
-            // ---------------------------------------------------------
-
             setListofBooks(response.data);
         })
         .catch((err) =>{
@@ -34,6 +28,8 @@ const App = ()=>{
             <AddNew /> 
             {listOfBooks.map((bookList,index) =>{
                 
+                // destructuring
+                const {users: [{user}]} = bookList;
                 const {users: [{rating}]} = bookList;
                 const {users: [{review}]} = bookList;
 
@@ -45,6 +41,7 @@ const App = ()=>{
                         publisher = {bookList.publisher}
                         rating = {rating}
                         review = {review}
+                        user = {user}
                     />  
                 )
             })}

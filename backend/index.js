@@ -28,31 +28,15 @@ const userSchema = new mongoose.Schema({
     review: String
 })
 
+// creating model
 const User = mongoose.model("User", userSchema);
-
-// const user1 = new User({
-//     user:"vroxoschi",
-//     rating:8.2,
-//     review:"The Malayalam debut novel by O.V Vijayan (Indian writer) has translated to the English version.\n The story was smooth but the Malayalam version was more suitainable and sensible than the English one. I had also heard the Malayalam audio version on YouTube."
-// })
-
-// const user2 = new User({
-//         user:"Mrisio",
-//         rating:7.5,
-//         review:" The book is the memoirs of one of the best poets of India in the second half of the twentieth century. The book is quite emotional and has a poetic quality."
-// })
-
-// const user3 = new User({
-//         user:"Thivokri",
-//         rating:8.3,
-//         review:"The Malayalam debut novel by O.V Vijayan (Indian writer) has translated to the English version.\n The story was smooth but the Malayalam version was more suitainable and sensible than the English one. I had also heard the Malayalam audio version on YouTube."
-// })
 
 // creating new schema
 const bookSchema = new mongoose.Schema({
     title: String,
     author: String,
     publisher: String,
+    //schema as a data type
     users: [userSchema]
 });
 
@@ -97,22 +81,31 @@ const book3 = new Book({
 // ===========================================
 
 app.get("/", async(req,res) =>{
-    // console.log(req);
-    // res.send("what up?");
     var avlBooks =await Book.find();
     res.send(avlBooks);
 })
 
-app.post("/submit",(req,res)=>{
+app.post("/submit", async (req,res)=>{
     console.log(req.body);
-})
+    const data = req.body;
 
-// app.post("/submit", async(req,res) =>{
-//     const newBook = req.body;
-//     await Book.create(newBook);
-//     console.log(newBook);
-//     return res.status(200).json("recieved");
-// });
+    try{
+        const newBook = new Book({
+            title: data.title,
+            author :data.author,
+            publisher : data.publisher,
+            users :new User ({
+                user : data.user?data.user:"Anonymous User",
+                rating: data.rating,
+                review: data.review
+            })
+        })
+        await newBook.save();
+    }catch (error){
+        consol.error(error);
+    }
+
+})
 
 app.listen(port, ()=> {
     console.log(`App is listening to port ${port}`);

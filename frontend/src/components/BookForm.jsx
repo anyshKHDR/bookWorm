@@ -31,7 +31,6 @@ const BookForm = (props)=> {
     const handleSubmit = async (event) => {
        event.preventDefault(); 
        try {
-        // handleClose();
         props.onSubmit();
         await axios.post("http://localhost:3001/submit", data);
        }catch(error) {
@@ -49,12 +48,12 @@ const BookForm = (props)=> {
                             <div className="row">
                                 <div className="col-sm-4 col1"></div>
                                 <div className="col-sm-8 col2">
-                                    <input className="formTitle" name="title" type="text" placeholder="Book Name" onChange={handleChange} required />
-                                    <input className="formContent" name="author" type="text" placeholder="Author" onChange={handleChange} required/> 
-                                    <input className="formContent" name="publisher" type="text" placeholder="publisher" onChange={handleChange} /> 
-                                    <input className="formContent" name="rating" type="number" min={1} max={10} placeholder="Your rating" onChange={handleChange}/> 
-                                    <textarea className="formContent" name="review" id="" cols="" rows="3" style={{height:"auto"}} placeholder="write a review" onChange={handleChange}></textarea>
-                                    <input className="formContent" name="user" type="text" min={1} max={10} placeholder="Your name (optional)" onChange={handleChange}/> 
+                                    <input className="formTitle" name="title" type="text" placeholder="Book Name" onChange={handleChange} required autoComplete="off"/>
+                                    <input className="formContent" name="author" type="text" placeholder="Author" onChange={handleChange} required autoComplete="off"/> 
+                                    <input className="formContent" name="publisher" type="text" placeholder="publisher" onChange={handleChange} autoComplete="off"/> 
+                                    <input className="formContent" name="rating" type="number" min={1} max={10} placeholder="Your rating" onChange={handleChange} autoComplete="off"/> 
+                                    <textarea className="formContent" name="review" id="" cols="" rows="3" style={{height:"auto"}} placeholder="write a review" onChange={handleChange} autoComplete="off"></textarea>
+                                    <input className="formContent" name="user" type="text" min={1} max={10} placeholder="Your name (optional)" onChange={handleChange} autoComplete="off"/> 
                                     <button className="btn btn-warning" style={{margin:"10px 0px 0px 15px", float:"left", border:"none"}} onClick={handleCancel}>Cancel</button>                    
                                     <button className="btn btn-success" type="submit" style={{margin:"10px 25px 0px 0px", float:"right"}} >Submit</button>
                                 </div>

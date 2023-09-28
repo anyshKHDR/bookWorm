@@ -1,7 +1,6 @@
 import React from "react";
 import AddNew from "./AddButton";
 function Card(props){
-        // {console.log(props)}
     return(
         <div className="container cards">
             <div className="row">
@@ -12,7 +11,7 @@ function Card(props){
                     <div className="publisher hlt"><h6><span className="by">published by {props.publisher}</span></h6></div>
                     <div className="rating hlt"><p>rating: &nbsp;{props.rating}/10</p></div>
                     <div className="review hlt">
-                        <p className="user">UserName</p>
+                        <p className="user">{props.user}</p>
                         <p className="rvw">{props.review} </p>
                     </div>
                 </div>
