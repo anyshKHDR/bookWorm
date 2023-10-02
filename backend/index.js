@@ -9,8 +9,9 @@ const port = 3001;
 
 app.use(cors());
 
-// app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.json());
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+// app.use(express.json());
 
 app.get('/favicon.ico', (req, res) => {
     res.status(204)
@@ -23,9 +24,9 @@ mongoose.connect("mongodb://127.0.0.1:27017/booksDB");
 
 // creating new schema
 const userSchema = new mongoose.Schema({
-    user: String,
-    rating: Number,
-    review: String
+    user: [String],
+    rating: [Number],
+    review: [String]
 })
 
 // creating model
@@ -77,7 +78,6 @@ const book3 = new Book({
 });
 // Book.insertMany([book, book2, book3])
 
-
 // ===========================================
 
 app.get("/", async(req,res) =>{
@@ -104,7 +104,29 @@ app.post("/submit", async (req,res)=>{
     }catch (error){
         consol.error(error);
     }
+    res.redirect("/");
+});
 
+app.post("/rating", async (req,res)=>{
+    const {rating,_id} = req.body;
+
+    try{
+        await Book.updateOne(
+            { _id: _id },
+            { $push: { "users.0.rating": rating } }
+        ); 
+    }catch(error){
+        console.log(error)
+    }
+});
+
+app.post("/reviews", async (req,res) =>{
+    const {_id, review} = req.body;
+    try{
+        await Book.findByIdAndUpdate(_id, {$push: {"users.0.review":review}})
+    }catch(err){
+        console.log(err)
+    }
 })
 
 app.listen(port, ()=> {

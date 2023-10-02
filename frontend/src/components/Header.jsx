@@ -4,7 +4,7 @@ function Header() {
     return(
         <header>
             <div className="imgDiv">
-                <img src="../../public/pictures/headPic.jpeg" alt="" />
+                <img src="../../public/pictures/headPic.jpeg" />
             </div>
                 <h1>book Worms</h1>
         </header>
