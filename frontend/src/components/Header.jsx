@@ -1,10 +1,11 @@
 import React from "react";
+import headPic from "../pictures/headPic.jpeg"
 
 function Header() {
     return(
         <header>
             <div className="imgDiv">
-                <img src="../../public/pictures/headPic.jpeg" />
+                <img className="headPic" src={headPic} />
             </div>
                 <h1>book Worms</h1>
         </header>

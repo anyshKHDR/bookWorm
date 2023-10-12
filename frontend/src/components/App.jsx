@@ -26,17 +26,16 @@ const App = ()=>{
     },[]);
 
     return(
-        <div>
+        <div style={{overflow:"hidden"}}>
             <Header />
             <AddButton rerender = {fetchData}/> 
 
             {listOfBooks.map((bookList,index) =>{
-                console.log(bookList._id);
                 
                 // destructuring
-                const {users: [{user}]} = bookList;
-                const {users: [{rating}]} = bookList;
-                const {users: [{review}]} = bookList;
+                const {users: [{user,rating,review}]} = bookList;
+                // const {users: [{rating}]} = bookList;
+                // const {users: [{review}]} = bookList;
 
                 return(
                     <Card 
@@ -49,10 +48,10 @@ const App = ()=>{
                         totatRatings = {rating.length}
                         review = {review}
                         user = {user}
+                        rerender = {fetchData}
                     />  
                 )
             })}
-            <Card />  
             <Footer />
         </div>
     );

@@ -1,5 +1,4 @@
 import express from "express";
-// import { PORT, mongDBURL} from "./config.js";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -52,7 +51,7 @@ const book = new Book({
     publisher:"Penguin Books India",
     users:new User({
         user:"vroxoschi",
-        rating:8.2,
+        rating:[ 8 ],
         review:"The Malayalam debut novel by O.V Vijayan (Indian writer) has translated to the English version.\n The story was smooth but the Malayalam version was more suitainable and sensible than the English one. I had also heard the Malayalam audio version on YouTube."
     })
 });
@@ -62,7 +61,7 @@ const book2 = new Book({
     publisher:"Harper Collins",
     users:new User({
         user:"Mrisio",
-        rating:7.5,
+        rating:[ 7 ],
         review:" The book is the memoirs of one of the best poets of India in the second half of the twentieth century. The book is quite emotional and has a poetic quality."
     })
 });
@@ -72,7 +71,7 @@ const book3 = new Book({
     publisher:"The Russian Messenger",
     users:new User({
         user:"Thivokri",
-        rating:8.3,
+        rating:[8],
         review:"The Malayalam debut novel by O.V Vijayan (Indian writer) has translated to the English version.\n The story was smooth but the Malayalam version was more suitainable and sensible than the English one. I had also heard the Malayalam audio version on YouTube."
     })
 });
@@ -88,6 +87,8 @@ app.get("/", async(req,res) =>{
 app.post("/submit", async (req,res)=>{
     console.log(req.body);
     const data = req.body;
+    const rating = data.rating;
+    console.log(data.rating)
 
     try{
         const newBook = new Book({
@@ -95,8 +96,9 @@ app.post("/submit", async (req,res)=>{
             author :data.author,
             publisher : data.publisher,
             users :new User ({
+                // conditionally including - note the ternary operator
                 user : data.user?data.user:"Anonymous User",
-                rating: data.rating,
+                rating: data.rating?data.rating:{},
                 review: data.review
             })
         })
@@ -118,15 +120,19 @@ app.post("/rating", async (req,res)=>{
     }catch(error){
         console.log(error)
     }
+    res.redirect("/");
 });
 
 app.post("/reviews", async (req,res) =>{
-    const {_id, review} = req.body;
+    const {_id, review,user} = req.body;
+    console.log(req.body)
     try{
         await Book.findByIdAndUpdate(_id, {$push: {"users.0.review":review}})
+        await Book.findByIdAndUpdate(_id, {$push: {"users.0.user":user}})
     }catch(err){
         console.log(err)
     }
+    res.redirect("/");
 })
 
 app.listen(port, ()=> {

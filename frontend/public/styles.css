@@ -1,3 +1,6 @@
+body{
+    background-color: #928686;
+}
 header {
     height: 200px;
     width: 100%;
@@ -7,9 +10,9 @@ header {
 }
 
 header .imgDiv {
-    height: 180px;
+    height: 200px;
     width: 150px;
-    background-color: rgb(217, 196, 230);
+    /* background-color: rgb(217, 196, 230); */
     display: inline-block;
     float: left;
 }
@@ -40,6 +43,7 @@ footer {
     background-color: yellow;
     border: 5px solid white;
     height: 500px;
+    /* overflow: hidden; */
 }
 
 .by {
@@ -132,7 +136,7 @@ footer {
 }
 
 
-/* Hide Input Number Arrows */
+/* ----------------Hide Input Number Arrows-------------- */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -142,4 +146,51 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+
+/* ------------div Scrollbar style----------------------- */
+/* firefox */
+.review {
+    scrollbar-width: thin;
+    /* scrollbar-color: blue violet; */
+}
+.review::-webkit-scrollbar {
+    width: 2px;
+}
+/* Chrome, Edge, and Safari */
+.review::-webkit-scrollbar-track {
+    /* background: orange; */
+}
+.review::-webkit-scrollbar-thumb {
+    background-color: rgb(157, 157, 157);
+    border-radius: 20px;
+    /* border: 3px solid orange; */
+}
+  
+
+
+.review{
+    overflow: auto;
+    height: 120px;
+    width: auto;
+    /* text-overflow: ellipsis; */
+}
+
+.rvw {
+    white-space: nowrap;
+    /* height: 3.5em; */
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.rvwUser {
+    margin-left: 20px;
+    border-radius: 6px;
+    border: .5px solid lightgrey;
+}
+
+.headPic {
+    max-height: 100%;
+    max-width: 100%;
 }
