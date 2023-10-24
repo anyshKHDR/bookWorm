@@ -194,3 +194,12 @@ input[type=number] {
     max-height: 100%;
     max-width: 100%;
 }
+
+input[type="file"] {
+    display: none;
+}
+
+.uploadLogo {
+    height: 480px;
+    width: 100%;
+}

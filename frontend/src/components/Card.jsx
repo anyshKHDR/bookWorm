@@ -1,10 +1,12 @@
 import AddReview from "./AddReview";
 import AddRating from "./AddRating";
 import CurrentRating from "./CurrentRating";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import CurrentReviews from "./CurrentReviews";
+import bookImage from "../pictures/headPic.jpeg"
 
 function Card(props){
+    console.log(props.image.length)
 
     const [showAddAReview, SetShowAddAReview] = useState(false);
     const [showAddRating, SetShowAddRating] = useState(false);
@@ -15,7 +17,12 @@ function Card(props){
     return(
         <div className="container cards">
             <div className="row">
-                <div className="col-sm-4 col1"></div>
+                <div className="col-sm-4 col1">
+                    <img src={props.image?props.image:bookImage} alt="" 
+                        style={{height:"100%", width:"100%"}}
+                    />
+                </div>
+
                 <div className="col-sm-8 col2">
                     <div className="title hlt"><h3>{props.title}</h3></div>
                     <div className="author hlt"><h5>{props.author} </h5></div>

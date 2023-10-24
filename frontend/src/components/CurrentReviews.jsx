@@ -1,27 +1,3 @@
-// import React, { useState } from "react";
-
-// const CurrentReviews = ({showAddAReview,user,review})=>{
-
-//     const [showMore, setShowMore] = useState(new Array(review.length).fill(false));
-
-//     const handleClick = (index)=>{
-//         const currentState = [...showMore];
-//         currentState[index] = !showMore[index];
-//         setShowMore(currentState);
-//     }
-
-//     return (
-//          review.forEach((data)=>{
-
-//     })
-//     )
-//  }
-// export default CurrentReviews;
-
-
-
-
-
 import React, { useState } from "react";
 
 const CurrentReviews = ({showAddAReview,user,review})=>{
@@ -33,7 +9,7 @@ const CurrentReviews = ({showAddAReview,user,review})=>{
         currentState[index] = !showMore[index];
         setShowMore(currentState);
     }
-    console.log(review);
+    // console.log(review);
     
     return(
         !showAddAReview&& 

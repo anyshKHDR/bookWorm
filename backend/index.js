@@ -8,8 +8,8 @@ const port = 3001;
 
 app.use(cors());
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({limit:'3mb', extended:true}));
+app.use(bodyParser.json({ limit:'3mb'}));
 // app.use(express.json());
 
 app.get('/favicon.ico', (req, res) => {
@@ -36,6 +36,7 @@ const bookSchema = new mongoose.Schema({
     title: String,
     author: String,
     publisher: String,
+    bookImg:String,
     //schema as a data type
     users: [userSchema]
 });
@@ -49,6 +50,7 @@ const book = new Book({
     title:"Legends Of Khasak",
     author:"O.V. Vijayan",
     publisher:"Penguin Books India",
+    bookImg:"",
     users:new User({
         user:"vroxoschi",
         rating:[ 8 ],
@@ -59,6 +61,7 @@ const book2 = new Book({
     title:"My Story",
     author:"Kamala Das",
     publisher:"Harper Collins",
+    bookImg:"",
     users:new User({
         user:"Mrisio",
         rating:[ 7 ],
@@ -69,6 +72,7 @@ const book3 = new Book({
     title:"War and Peace",
     author:"Leo Tolstoy",
     publisher:"The Russian Messenger",
+    bookImg:"",
     users:new User({
         user:"Thivokri",
         rating:[8],
@@ -87,14 +91,14 @@ app.get("/", async(req,res) =>{
 app.post("/submit", async (req,res)=>{
     console.log(req.body);
     const data = req.body;
-    const rating = data.rating;
-    console.log(data.rating)
+    console.log(data.image.length)
 
     try{
         const newBook = new Book({
             title: data.title,
             author :data.author,
             publisher : data.publisher,
+            bookImg: data.image,
             users :new User ({
                 // conditionally including - note the ternary operator
                 user : data.user?data.user:"Anonymous User",

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import uploadLogo from "../pictures/upload_logo.png"
 
 const BookForm = (props)=> {
+
+    const [currentImg, setCurrentImg] = useState(uploadLogo);
 
     const [data, setData] = useState({
         title:"",
@@ -9,11 +12,13 @@ const BookForm = (props)=> {
         publisher:"",
         rating:"",
         review:"",
-        user:""
+        user:"",
+        image:""
     })
 
     const handleChange = (event)=>{
         const {name, value} = event.target;
+        // console.log(event.target.value);
 
         setData({
             ...data,
@@ -22,6 +27,39 @@ const BookForm = (props)=> {
     };
 
 // ----------------------------------------------------------------
+
+    const convertToBase64 = (file)=>{
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = ()=>{
+                resolve(fileReader.result)
+            };
+            fileReader.onerror = (error) =>{
+                reject(error)
+            };
+        })
+    }
+    
+    const handleImage = async(event)=>{
+        const file = event.target.files[0];
+        // console.log();
+        try{
+            const base64 = await convertToBase64(file);
+            setCurrentImg(base64);
+            setData({
+                ...data,
+                image: base64,
+            })
+            console.log(base64);
+            const imgFormatStrng = base64.substr(11,4);
+            const imgFormat = imgFormatStrng.split(";")
+            console.log(imgFormat[0]);
+        }catch(error){
+            console.error(error);
+        }
+    };
+    
     const handleCancel = ()=> {
         document.body.classList.remove("scrollLock");
         props.closePopup();
@@ -46,7 +84,16 @@ const BookForm = (props)=> {
                     <form style={{display:"block"}} action="" onSubmit={handleSubmit}>
                         <div className="container cards">
                             <div className="row">
-                                <div className="col-sm-4 col1"></div>
+
+                                <div className="col-sm-4 col1">
+                                    <label className="uploadBookImg" htmlFor="bookImg">
+                                        <img className="uploadLogo" src={currentImg} alt="uplaod" 
+                                            // style={{height:"100%", width:"100%"}}
+                                        />
+                                    </label>
+                                    <input type="file" name="image" id="bookImg" accept=".jpeg, .jpg, .png" onChange={handleImage}/>
+                                </div>
+
                                 <div className="col-sm-8 col2">
                                     <input className="formTitle" name="title" type="text" placeholder="Book Name" onChange={handleChange} required autoComplete="off"/>
                                     <input className="formContent" name="author" type="text" placeholder="Author" onChange={handleChange} required autoComplete="off"/> 
