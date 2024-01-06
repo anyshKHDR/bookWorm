@@ -1,20 +1,36 @@
 body{
-    background-color: #928686;
+    background-color:#fff1f06b;
 }
 header {
     height: 200px;
     width: 100%;
     top: 0px;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #f4bdff24;
 }
 
-header .imgDiv {
+.headerDiv {
+    /* background-color: pink; */
+    height: 50%;
+    position: relative;
+}
+
+.imgDiv {
     height: 200px;
     width: 150px;
-    /* background-color: rgb(217, 196, 230); */
-    display: inline-block;
     float: left;
+}
+
+#ratingBox {
+    width: 210px;    
+}
+
+.pageTitle {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 footer {
@@ -25,24 +41,29 @@ footer {
 }
 
 .container * {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+
 }
 
 .cards {
     margin-top: 20px;
     width:100vh;
+    border: solid #cececec7 .2px;
+    border-radius: 5px;
 }
 
 .col1 {
-    background-color: yellow;
+    background-color: white;
     height: 500px;
     border: 5px solid white;
+    border-radius: 5px;
 }
 
 .col2 {
-    background-color: yellow;
+    background-color: #EEEFFC;;
     border: 5px solid white;
     height: 500px;
+    border-radius: 5px;
     /* overflow: hidden; */
 }
 
@@ -51,7 +72,7 @@ footer {
 }
 
 .hlt {
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
     margin: 20px;
 }
 
@@ -202,4 +223,42 @@ input[type="file"] {
 .uploadLogo {
     height: 480px;
     width: 100%;
+}
+
+#updateBgDiv{
+    display: flex;
+    z-index: 1;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: blueviolet;
+}
+
+#updateFormDiv {
+    width: 1000px;
+    height: 480px;
+    z-index: 2;
+    background-color: rgb(196, 219, 219);
+    text-align: center;
+    overflow: hidden;
+}
+
+#updateImg {
+    background-color: bisque;
+    height: 100%;
+    width: 30%;
+    z-index: 3;
+    float: left;
+}
+
+#updateDetails {
+    background-color: rgb(242, 232, 91);
+    height: 480px;
+    width: 70%;
+    z-index: 3;
+    float: right;
 }

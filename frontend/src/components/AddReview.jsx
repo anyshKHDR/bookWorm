@@ -3,6 +3,8 @@ import React, { useState } from "react"
 
 const AddReview = ({_id, newReview, rerender})=>{
 
+    console.log(_id);
+    
     const [review, setReview] = useState({
         review: "",
         user:"Anonumous user"

@@ -1,18 +1,18 @@
 import AddReview from "./AddReview";
 import AddRating from "./AddRating";
 import CurrentRating from "./CurrentRating";
-import { useState,useEffect } from "react";
+import React,{useState} from "react";
 import CurrentReviews from "./CurrentReviews";
 import bookImage from "../pictures/headPic.jpeg"
+import UpdateBook from "./UpdateBook";
 
 function Card(props){
-    console.log(props.image.length)
 
     const [showAddAReview, SetShowAddAReview] = useState(false);
-    const [showAddRating, SetShowAddRating] = useState(false);
+    const [showUpdateForm, setShowUpdateForm] = useState(false);
 
     const newReview = ()=> SetShowAddAReview(!showAddAReview);
-    const newRating = ()=> SetShowAddRating(!showAddRating);
+    const updateForm = ()=> setShowUpdateForm(!showUpdateForm);
 
     return(
         <div className="container cards">
@@ -30,14 +30,10 @@ function Card(props){
 
                     <CurrentRating rating={props.rating}/>
 
-                    {showAddRating && 
-                        <AddRating 
-                            newRating = {newRating} 
-                            _id = {props._id} 
-                            rerender = {props.rerender}
-                        />
-                    }
-                    <button onClick={newRating}>{!showAddRating? "Rate this Book" : "Cancel" }</button>
+                    <AddRating 
+                        _id = {props._id} 
+                        rerender = {props.rerender}
+                    />
 
                     <div className="hlt">
                         <p className="user" style={{color:"grey"}}>Submitted by:&nbsp; {props.user[0]}</p>
@@ -57,6 +53,19 @@ function Card(props){
                         />
                     }
                     <button onClick={newReview}>{!showAddAReview?"Add A review" : "Cancel"} </button>
+
+                    {showUpdateForm && 
+                        <UpdateBook 
+                            _id = {props._id} 
+                            title = {props.title}
+                            author = {props.author}
+                            publisher = {props.publisher}
+                            image = {props.image}
+                            updateForm = {updateForm}
+                            rerender = {props.rerender}
+                        />
+                    }
+                    <button style={{ float:"right"}} onClick={updateForm}>{!showUpdateForm?"Edit":"Cancel"} </button>
 
                 </div>
             </div>

@@ -139,6 +139,19 @@ app.post("/reviews", async (req,res) =>{
     res.redirect("/");
 })
 
+app.patch("/edit/:_id", async (req,res) =>{
+
+    const _id = req.params._id;
+    const updateData = req.body;
+
+    try{
+        await Book.findByIdAndUpdate(_id, updateData);
+    }catch(error){
+        console.error(error);
+    }
+    res.redirect("/");
+})
+
 app.listen(port, ()=> {
     console.log(`App is listening to port ${port}`);
 });
