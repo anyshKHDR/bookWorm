@@ -8,8 +8,8 @@ import UpdateBook from "./UpdateBook";
 
 function Card(props){
 
-    const [showAddAReview, SetShowAddAReview] = useState(false);
     const [showUpdateForm, setShowUpdateForm] = useState(false);
+    const [showAddAReview, SetShowAddAReview] = useState(false);
 
     const newReview = ()=> SetShowAddAReview(!showAddAReview);
     const updateForm = ()=> setShowUpdateForm(!showUpdateForm);
@@ -42,17 +42,22 @@ function Card(props){
                     <CurrentReviews 
                         showAddAReview = {showAddAReview}
                         user = {props.user}
+                        
                         review = {props.review}
                     />
+{/* *********************************************** */}
+                    {/* {showAddAReview && */}
 
-                    {showAddAReview &&
                         <AddReview 
                             _id = {props._id} 
+                            showAddAReview = {showAddAReview}
                             newReview = {newReview} 
                             rerender = {props.rerender}
                         />
-                    }
-                    <button onClick={newReview}>{!showAddAReview?"Add A review" : "Cancel"} </button>
+
+                    {/* } */}
+                    {/* <button onClick={newReview}>{!showAddAReview?"Add A review" : "Cancel"} </button> */}
+{/* *********************************************** */}
 
                     {showUpdateForm && 
                         <UpdateBook 

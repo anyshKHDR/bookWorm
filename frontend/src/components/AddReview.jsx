@@ -1,13 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react"
 
-const AddReview = ({_id, newReview, rerender})=>{
+const AddReview = ({_id, newReview, showAddAReview, rerender})=>{
 
-    console.log(_id);
-    
     const [review, setReview] = useState({
         review: "",
-        user:"Anonumous user"
+        user:"Anonymous User"
     })
 
     const handleChange = (event)=>{
@@ -35,29 +33,37 @@ const AddReview = ({_id, newReview, rerender})=>{
 
     return(    
         <div>
-            <form onSubmit={handleSubmit}>
+            {showAddAReview &&
+                <div>
+                    <form onSubmit={handleSubmit} style={{display:"inline-block"}}>
 
-                <input 
-                    className="rvwUser"
-                    type="text" 
-                    name="user"
-                    placeholder="Your name(optional)"
-                    onChange={handleChange} 
-                />
+                        <input 
+                            className="rvwUser"
+                            type="text" 
+                            name="user"
+                            placeholder="Your name(optional)"
+                            onChange={handleChange} 
+                        />
 
-                <textarea 
-                    className="formContent" 
-                    name="review" 
-                    cols="" 
-                    rows="3" 
-                    style={{height:"auto"}} 
-                    placeholder="write a review" 
-                    onChange={handleChange} 
-                    autoComplete="off" 
-                    required>
-                </textarea>
-                <button type="submit">submit</button>
-            </form>
+                        <textarea 
+                            className="formContent" 
+                            name="review" 
+                            cols="" 
+                            rows="3" 
+                            style={{height:"auto"}} 
+                            placeholder="write a review" 
+                            onChange={handleChange} 
+                            autoComplete="off" 
+                            required>
+                        </textarea>
+                        <button type="submit">Submit</button>
+                        <button onClick={newReview}>Cancel</button>
+                    </form>
+                </div>
+            }
+            {!showAddAReview &&
+                <button onClick={newReview}>Add A review</button>
+            }
         </div>
     )
 };

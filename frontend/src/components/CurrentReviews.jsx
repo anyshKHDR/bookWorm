@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 const CurrentReviews = ({showAddAReview,user,review})=>{
 
+    console.log(user)
+
     const [showMore, setShowMore] = useState(new Array(review.length).fill(false));
 
     const handleClick = (index)=>{
@@ -14,11 +16,16 @@ const CurrentReviews = ({showAddAReview,user,review})=>{
     return(
         !showAddAReview&& 
          
-        <div className="review hlt">
+        <div className="review hlt" id="rvwBox">
             {user.map((theUser, index)=>(
-                <div>
+                <div id="rvws">
                     {review[index]!== "" &&
-                        <p className="user">{theUser}</p>
+                        <p 
+                            className="user"
+                            style={{fontWeight:"500",color:"#9895a4"}}
+                        >
+                            {theUser}
+                        </p>
                     }
 
                     {review.map((reviewText, reviewIndex) => (
