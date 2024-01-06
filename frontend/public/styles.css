@@ -25,6 +25,12 @@ header {
     width: 210px;    
 }
 
+#rvws {
+    background-color: rgb(251, 251, 251);
+    padding: 7px;
+    margin: 5px;
+    border-radius: 7px;
+}
 .pageTitle {
     width: 100%;
     position: absolute;
@@ -73,7 +79,14 @@ footer {
 
 .hlt {
     /* background-color: yellowgreen; */
-    margin: 20px;
+    margin: 10px;
+}
+
+#rvwBox{
+    /* background-color: rgb(251, 251, 251); */
+    border: solid rgb(190, 185, 185) .4px;
+    border-radius: 5px; 
+    padding: 8px;
 }
 
 .user {
@@ -193,7 +206,7 @@ input[type=number] {
 
 .review{
     overflow: auto;
-    height: 120px;
+    height: 150px;
     width: auto;
     /* text-overflow: ellipsis; */
 }
@@ -203,6 +216,7 @@ input[type=number] {
     /* height: 3.5em; */
     text-overflow: ellipsis;
     overflow: hidden;
+    margin-bottom: 0px;
 }
 
 .rvwUser {
