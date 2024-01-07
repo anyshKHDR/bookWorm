@@ -37,6 +37,7 @@ const bookSchema = new mongoose.Schema({
     author: String,
     publisher: String,
     bookImg:String,
+    submitter:String,
     //schema as a data type
     users: [userSchema]
 });
@@ -51,6 +52,7 @@ const book = new Book({
     author:"O.V. Vijayan",
     publisher:"Penguin Books India",
     bookImg:"",
+    submitter:"vroxoschi",
     users:new User({
         user:"vroxoschi",
         rating:[ 8 ],
@@ -62,6 +64,7 @@ const book2 = new Book({
     author:"Kamala Das",
     publisher:"Harper Collins",
     bookImg:"",
+    submitter:"Mrisio",
     users:new User({
         user:"Mrisio",
         rating:[ 7 ],
@@ -73,6 +76,7 @@ const book3 = new Book({
     author:"Leo Tolstoy",
     publisher:"The Russian Messenger",
     bookImg:"",
+    submitter:"Thivokri",
     users:new User({
         user:"Thivokri",
         rating:[8],
@@ -83,15 +87,16 @@ const book3 = new Book({
 
 // ===========================================
 
+// GET request
 app.get("/", async(req,res) =>{
     var avlBooks =await Book.find();
     res.send(avlBooks);
 })
 
+// POST request - Book
 app.post("/submit", async (req,res)=>{
-    console.log(req.body);
     const data = req.body;
-    console.log(data.image.length)
+    // console.log(data);
 
     try{
         const newBook = new Book({
@@ -99,11 +104,12 @@ app.post("/submit", async (req,res)=>{
             author :data.author,
             publisher : data.publisher,
             bookImg: data.image,
+            submitter:data.user.length !=0 ?data.user:"Anonymous Submitter",
             users :new User ({
                 // conditionally including - note the ternary operator
-                user : data.user?data.user:"Anonymous User",
-                rating: data.rating?data.rating:{},
-                review: data.review
+                review: data.review.length !=0 ? data.review : {},
+                user : data.review.length !=0 ? (data.user?data.user:"Anonymous User"): {},
+                rating: data.rating?data.rating:{}
             })
         })
         await newBook.save();
@@ -113,6 +119,7 @@ app.post("/submit", async (req,res)=>{
     res.redirect("/");
 });
 
+// POST request - Rating
 app.post("/rating", async (req,res)=>{
     const {rating,_id} = req.body;
 
@@ -127,6 +134,7 @@ app.post("/rating", async (req,res)=>{
     res.redirect("/");
 });
 
+// POST request - Review
 app.post("/reviews", async (req,res) =>{
     const {_id, review,user} = req.body;
     console.log(req.body)
@@ -139,6 +147,7 @@ app.post("/reviews", async (req,res) =>{
     res.redirect("/");
 })
 
+// PATCH request - Book
 app.patch("/edit/:_id", async (req,res) =>{
 
     const _id = req.params._id;
