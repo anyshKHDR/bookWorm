@@ -13,10 +13,10 @@ const CurrentRating = ({rating})=>{
     };
 
     return(
-        <div className="rating hlt" id="rating">
+        <div className="rating hlt" id="rating" style={{display:"inline-block", marginBottom:"0px"}}>
             {rating.length > 0 ?
                 <p>
-                    rating: &nbsp;{avgRating()}/10 &nbsp;&nbsp;&nbsp;({rating.length})
+                    rating: &nbsp;{avgRating()}/10 &nbsp;({rating.length})
                 </p>
             :"No ratings" 
             }

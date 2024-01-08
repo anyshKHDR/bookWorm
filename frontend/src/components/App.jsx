@@ -45,6 +45,7 @@ const App = ()=>{
                         author = {bookList.author}
                         publisher = {bookList.publisher}
                         image = {bookList.bookImg}
+                        submitter = {bookList.submitter}
                         rating = {rating}
                         totatRatings = {rating.length}
                         review = {review}

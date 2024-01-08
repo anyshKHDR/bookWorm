@@ -5,7 +5,7 @@ const AddReview = ({_id, newReview, showAddAReview, rerender})=>{
 
     const [review, setReview] = useState({
         review: "",
-        user:"Anonymous User"
+        user:"AnonymousUser"
     })
 
     const handleChange = (event)=>{
@@ -23,6 +23,7 @@ const AddReview = ({_id, newReview, showAddAReview, rerender})=>{
         event.preventDefault();
         newReview();
         try{
+            console.log(review);
             await axios.post("http://localhost:3001/reviews", review);
             rerender();
             setReview("")
@@ -62,7 +63,7 @@ const AddReview = ({_id, newReview, showAddAReview, rerender})=>{
                 </div>
             }
             {!showAddAReview &&
-                <button onClick={newReview}>Add A review</button>
+                <button onClick={newReview} style={{marginLeft:"10px"}}>Add A review</button>
             }
         </div>
     )

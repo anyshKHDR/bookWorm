@@ -31,9 +31,9 @@ const AddRating = ({ _id,rerender}) =>{
     }
 
     return(   
-        <div>
+        <div style={{display:"inline-block", marginLeft:"20px"}}>
             {showAddRating && 
-            <div>
+            <div >
                 <form action="" onSubmit={handleRating} style={{display:"inline-block"}}>
                     <input type="number" name="userRating" min={1} max={10} step={"0.1"} onChange={handleChange} placeholder="Entrer your rating out of 10" id="ratingBox" required/>
                     <button type="submit">Submit</button>

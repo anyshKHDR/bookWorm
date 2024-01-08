@@ -87,6 +87,7 @@ footer {
     border: solid rgb(190, 185, 185) .4px;
     border-radius: 5px; 
     padding: 8px;
+    height: 180px;
 }
 
 .user {

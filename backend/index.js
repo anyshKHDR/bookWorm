@@ -97,6 +97,9 @@ app.get("/", async(req,res) =>{
 app.post("/submit", async (req,res)=>{
     const data = req.body;
     // console.log(data);
+    console.log(data.publisher);
+    console.log(data.publisher.length);
+    console.log(data.publisher.type);
 
     try{
         const newBook = new Book({
@@ -104,7 +107,7 @@ app.post("/submit", async (req,res)=>{
             author :data.author,
             publisher : data.publisher,
             bookImg: data.image,
-            submitter:data.user.length !=0 ?data.user:"Anonymous Submitter",
+            submitter:data.user.length !=0 ?data.user:"Anonymous Submission",
             users :new User ({
                 // conditionally including - note the ternary operator
                 review: data.review.length !=0 ? data.review : {},
@@ -137,10 +140,12 @@ app.post("/rating", async (req,res)=>{
 // POST request - Review
 app.post("/reviews", async (req,res) =>{
     const {_id, review,user} = req.body;
+    const userName = user != "" ? user : "AnonymousUser"
     console.log(req.body)
     try{
+        const userName = user != "" ? user : "AnonymousUser"
+        await Book.findByIdAndUpdate(_id, {$push: {"users.0.user":userName}})
         await Book.findByIdAndUpdate(_id, {$push: {"users.0.review":review}})
-        await Book.findByIdAndUpdate(_id, {$push: {"users.0.user":user}})
     }catch(err){
         console.log(err)
     }

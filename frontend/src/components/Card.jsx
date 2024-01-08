@@ -26,7 +26,7 @@ function Card(props){
                 <div className="col-sm-8 col2">
                     <div className="title hlt"><h3>{props.title}</h3></div>
                     <div className="author hlt"><h5>{props.author} </h5></div>
-                    <div className="publisher hlt"><h6><span className="by">published by {props.publisher}</span></h6></div>
+                    <div className="publisher hlt"><h6><span className="by">{props.publisher !== "" ? "Published by " + props.publisher:"Unknow Publisher"}</span></h6></div>
 
                     <CurrentRating rating={props.rating}/>
 
@@ -36,28 +36,23 @@ function Card(props){
                     />
 
                     <div className="hlt">
-                        <p className="user" style={{color:"grey"}}>Submitted by:&nbsp; {props.user[0]}</p>
+                        <p className="user" style={{color:"grey", margin:"15px 15px 15px 0px"}}>
+                            {props.submitter !== "Anonymous Submission" ? "Submitted by : " + props.submitter: props.submitter}
+                        </p>
                     </div>
                     
                     <CurrentReviews 
                         showAddAReview = {showAddAReview}
                         user = {props.user}
-                        
                         review = {props.review}
                     />
-{/* *********************************************** */}
-                    {/* {showAddAReview && */}
 
-                        <AddReview 
-                            _id = {props._id} 
-                            showAddAReview = {showAddAReview}
-                            newReview = {newReview} 
-                            rerender = {props.rerender}
-                        />
-
-                    {/* } */}
-                    {/* <button onClick={newReview}>{!showAddAReview?"Add A review" : "Cancel"} </button> */}
-{/* *********************************************** */}
+                    <AddReview 
+                        _id = {props._id} 
+                        showAddAReview = {showAddAReview}
+                        newReview = {newReview} 
+                        rerender = {props.rerender}
+                    />
 
                     {showUpdateForm && 
                         <UpdateBook 
@@ -70,7 +65,7 @@ function Card(props){
                             rerender = {props.rerender}
                         />
                     }
-                    <button style={{ float:"right"}} onClick={updateForm}>{!showUpdateForm?"Edit":"Cancel"} </button>
+                    <button style={{ float:"right"}} onClick={updateForm}>{!showUpdateForm?"Edit the book":"Cancel"} </button>
 
                 </div>
             </div>
