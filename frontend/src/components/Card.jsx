@@ -1,32 +1,34 @@
+import React,{useState} from "react";
 import AddReview from "./AddReview";
 import AddRating from "./AddRating";
 import CurrentRating from "./CurrentRating";
-import React,{useState} from "react";
 import CurrentReviews from "./CurrentReviews";
-import bookImage from "../pictures/headPic.jpeg"
 import UpdateBook from "./UpdateBook";
+import BookImage from "./BookImage";
+import Submitter from "./Submitter";
+import BookDetails from "./BookDetails";
+import EditButton from "./EditButton";
 
 function Card(props){
 
     const [showUpdateForm, setShowUpdateForm] = useState(false);
     const [showAddAReview, SetShowAddAReview] = useState(false);
 
-    const newReview = ()=> SetShowAddAReview(!showAddAReview);
     const updateForm = ()=> setShowUpdateForm(!showUpdateForm);
+    const newReview = ()=> SetShowAddAReview(!showAddAReview);
 
     return(
         <div className="container cards">
             <div className="row">
-                <div className="col-sm-4 col1">
-                    <img src={props.image?props.image:bookImage} alt="" 
-                        style={{height:"100%", width:"100%"}}
-                    />
-                </div>
+
+                <BookImage image={props.image} />
 
                 <div className="col-sm-8 col2">
-                    <div className="title hlt"><h3>{props.title}</h3></div>
-                    <div className="author hlt"><h5>{props.author} </h5></div>
-                    <div className="publisher hlt"><h6><span className="by">{props.publisher !== "" ? "Published by " + props.publisher:"Unknow Publisher"}</span></h6></div>
+                    <BookDetails 
+                        title={props.title} 
+                        author={props.author} 
+                        publisher={props.publisher} 
+                    />
 
                     <CurrentRating rating={props.rating}/>
 
@@ -35,12 +37,8 @@ function Card(props){
                         rerender = {props.rerender}
                     />
 
-                    <div className="hlt">
-                        <p className="user" style={{color:"grey", margin:"15px 15px 15px 0px"}}>
-                            {props.submitter !== "Anonymous Submission" ? "Submitted by : " + props.submitter: props.submitter}
-                        </p>
-                    </div>
-                    
+                    <Submitter submitter = {props.submitter} />
+
                     <CurrentReviews 
                         showAddAReview = {showAddAReview}
                         user = {props.user}
@@ -65,7 +63,11 @@ function Card(props){
                             rerender = {props.rerender}
                         />
                     }
-                    <button style={{ float:"right"}} onClick={updateForm}>{!showUpdateForm?"Edit the book":"Cancel"} </button>
+
+                    <EditButton 
+                        updateForm = {updateForm}
+                        showUpdateForm = {showUpdateForm}
+                    />
 
                 </div>
             </div>
