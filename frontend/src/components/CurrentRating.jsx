@@ -18,7 +18,7 @@ const CurrentRating = ({rating})=>{
                 <p>
                     rating: &nbsp;{avgRating()}/10 &nbsp;({rating.length})
                 </p>
-            :"No ratings" 
+            :<p style={{color:"#abb2d9"}}>No ratings</p>
             }
         </div>
     )

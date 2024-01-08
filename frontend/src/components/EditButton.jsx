@@ -1,8 +1,8 @@
 import React from "react";
 
-const EditButton = (updateForm, showUpdateForm)=>{
+const EditButton = (props)=>{
     return(
-        <button style={{ float:"right"}} onClick={updateForm}>{!showUpdateForm?"Edit the book":"Cancel"} </button>
+        <button style={{ float:"right"}} onClick={props.updateForm}>{!props.showUpdateForm?"Edit the book":"Cancel"} </button>
     )
 }
 
