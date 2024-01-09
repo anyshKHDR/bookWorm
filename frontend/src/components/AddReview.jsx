@@ -50,20 +50,22 @@ const AddReview = ({_id, newReview, showAddAReview, rerender})=>{
                             className="formContent" 
                             name="review" 
                             cols="" 
-                            rows="3" 
+                            rows="5" 
                             style={{height:"auto"}} 
                             placeholder="write a review" 
                             onChange={handleChange} 
                             autoComplete="off" 
                             required>
                         </textarea>
-                        <button type="submit">Submit</button>
-                        <button onClick={newReview}>Cancel</button>
+                        <button type="submit" className="rSbmt">Submit</button>
+                        <button onClick={newReview} className="rCncl">Cancel</button>
                     </form>
                 </div>
             }
             {!showAddAReview &&
-                <button onClick={newReview} style={{marginLeft:"10px"}}>Add A review</button>
+                <button onClick={newReview} style={{marginLeft:"10px"}} >
+                    Add A review
+                </button>
             }
         </div>
     )

@@ -10,15 +10,24 @@ header {
 }
 
 .headerDiv {
-    /* background-color: pink; */
-    height: 50%;
+    height: 100%;
     position: relative;
+}
+
+.pageTitle {
+    display: inline-block;
 }
 
 .imgDiv {
     height: 200px;
     width: 150px;
-    float: left;
+    display: inline;
+}
+
+.headPic {
+    max-height: 100%;
+    max-width: 100%;
+    padding: 10px 0px;
 }
 
 #ratingBox {
@@ -31,24 +40,12 @@ header {
     margin: 5px;
     border-radius: 7px;
 }
-.pageTitle {
-    width: 100%;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
 footer {
     height: 150px;
     width: 100%;
     text-align: center;
     background-color: aliceblue;
-}
-
-.container * {
-    /* margin-bottom: 20px; */
-
 }
 
 .cards {
@@ -70,7 +67,6 @@ footer {
     border: 5px solid white;
     height: 500px;
     border-radius: 5px;
-    /* overflow: hidden; */
 }
 
 .by {
@@ -78,12 +74,10 @@ footer {
 }
 
 .hlt {
-    /* background-color: yellowgreen; */
     margin: 10px;
 }
 
 #rvwBox{
-    /* background-color: rgb(251, 251, 251); */
     border: solid rgb(190, 185, 185) .4px;
     border-radius: 5px; 
     padding: 8px;
@@ -183,7 +177,6 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-
 /* ------------div Scrollbar style----------------------- */
 /* firefox */
 .review {
@@ -194,27 +187,20 @@ input[type=number] {
     width: 2px;
 }
 /* Chrome, Edge, and Safari */
-.review::-webkit-scrollbar-track {
-    /* background: orange; */
-}
 .review::-webkit-scrollbar-thumb {
     background-color: rgb(157, 157, 157);
     border-radius: 20px;
     /* border: 3px solid orange; */
 }
   
-
-
 .review{
     overflow: auto;
     height: 150px;
     width: auto;
-    /* text-overflow: ellipsis; */
 }
 
 .rvw {
     white-space: nowrap;
-    /* height: 3.5em; */
     text-overflow: ellipsis;
     overflow: hidden;
     margin-bottom: 0px;
@@ -224,11 +210,6 @@ input[type=number] {
     margin-left: 20px;
     border-radius: 6px;
     border: .5px solid lightgrey;
-}
-
-.headPic {
-    max-height: 100%;
-    max-width: 100%;
 }
 
 input[type="file"] {
@@ -250,7 +231,7 @@ input[type="file"] {
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: blueviolet;
+    background-color: #f2eaf2;
 }
 
 #updateFormDiv {
@@ -260,10 +241,12 @@ input[type="file"] {
     background-color: rgb(196, 219, 219);
     text-align: center;
     overflow: hidden;
+    border: solid rgb(255, 255, 255) 5px;
+    border-radius: 6px;
 }
 
 #updateImg {
-    background-color: bisque;
+    background-color: rgb(255, 255, 255);
     height: 100%;
     width: 30%;
     z-index: 3;
@@ -271,7 +254,7 @@ input[type="file"] {
 }
 
 #updateDetails {
-    background-color: rgb(242, 232, 91);
+    background-color: #f6f3f3;
     height: 480px;
     width: 70%;
     z-index: 3;
@@ -279,9 +262,35 @@ input[type="file"] {
 }
 
 #defaultImg{
-    /* height: 80%; */
-    /* width: 100%; */
     display: flex;
     align-items: center;
+    justify-content: center;
     align-content: center;
+    padding: 10px;
+}
+
+.rSbmt{
+    margin:5px;
+    margin-left: 9px;
+    background-color: rgb(244, 210, 254);
+    border-radius: 5px;
+    border:solid rgb(255, 255, 255) 1px;
+}
+
+.rCncl{
+    background-color: rgb(210, 215, 254);
+    border-radius: 5px;
+    border:solid rgb(255, 255, 255) 1px;
+    margin:5px;
+}
+
+button{
+    border: solid rgb(62, 62, 62) 1px;
+    border-radius: 5px;
+    padding:5px;
+}
+
+#addBBtn {
+    margin: 10px;
+    background-color: rgb(253, 254, 216);
 }

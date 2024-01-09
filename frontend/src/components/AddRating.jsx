@@ -36,10 +36,10 @@ const AddRating = ({ _id,rerender}) =>{
             <div >
                 <form action="" onSubmit={handleRating} style={{display:"inline-block"}}>
                     <input type="number" name="userRating" min={1} max={10} step={"0.1"} onChange={handleChange} placeholder="Entrer your rating out of 10" id="ratingBox" required/>
-                    <button type="submit">Submit</button>
+                    <button type="submit" className="rSbmt">Submit</button>
                 </form>
 
-                <button onClick={newRating}>Cancel</button>
+                <button onClick={newRating} className="rCncl"> Cancel </button>
             </div>
             }
             {!showAddRating &&  

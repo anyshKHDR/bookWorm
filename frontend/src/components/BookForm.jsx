@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import uploadLogo from "../pictures/upload_logo.png"
+import uploadLogo from "../pictures/chooseImg.png"
 
 const BookForm = (props)=> {
 
@@ -82,13 +82,14 @@ const BookForm = (props)=> {
                 <div id="updateFormDiv">
                 <form action="" onSubmit={handleSubmit}>
                     <div id="updateImg">
-                        <label className="uploadBookImg" htmlFor="bookImg">
-                            <img 
-                                className="uploadLogo" 
-                                src={currentImg} alt="uplaod"
-                                style={{height:"40%", width:"40%"}}
-                            />
-                        </label>
+                        <div>
+                            <label className="uploadBookImg" htmlFor="bookImg">
+                                <img 
+                                    className="uploadLogo" 
+                                    src={currentImg} alt="uplaod"
+                                />
+                            </label>
+                        </div>
                             <input type="file" name="image" id="bookImg" accept=".jpeg, .jpg, .png" onChange={handleImage}/>
                     </div>
 

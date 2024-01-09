@@ -5,7 +5,7 @@ const BookImage = (props) =>{
    return( 
         <div className="col-sm-4 col1" id="defaultImg">
                 <img src={props.image?props.image:bookImage}
-                    style={{height:"80%", width:"100%"}}
+                    style={{height:"99%", width:"99%"}}
                 />
         </div>
     )

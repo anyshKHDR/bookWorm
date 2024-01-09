@@ -24,7 +24,7 @@ const AddButton = (props)=>{
 
     return( 
         <div className="addButton">
-            <button type="button" onClick={handlePopup}>Add a book</button>
+            <button type="button" onClick={handlePopup} id="addBBtn">Add a book</button>
             {popup?
                 <BookForm 
                     closePopup = {closePopup}

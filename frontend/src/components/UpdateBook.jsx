@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import uploadLogo from "../pictures/upload_logo.png";
+import uploadLogo from "../pictures/chooseImg.png";
 
 const UpdateBook = (props)=>{
 
