@@ -80,10 +80,10 @@ const book3 = new Book({
     users:new User({
         user:"Thivokri",
         rating:[8],
-        review:"The Malayalam debut novel by O.V Vijayan (Indian writer) has translated to the English version.\n The story was smooth but the Malayalam version was more suitainable and sensible than the English one. I had also heard the Malayalam audio version on YouTube."
+        review:"The holidays always remind me of this book and the snow falling out my window onto the trees is the perfect backdrop for thinking about everything that goes on in Tolstoy's big epic. When I finished this book I found myself missing the characters as one would a friend. It's been a decade now and they haven't called, so maybe I should pick this up and visit them again. A pretty much perfect book, Tolstoy brings his narrative to life from so many angles and opinions that you feel like you've been there, lived with this characters and, in turn, become part of the the epic yourself."
     })
 });
-// Book.insertMany([book, book2, book3])
+Book.insertMany([book, book2, book3])
 
 // ===========================================
 
@@ -137,10 +137,9 @@ app.post("/rating", async (req,res)=>{
 // POST request - Review
 app.post("/reviews", async (req,res) =>{
     const {_id, review,user} = req.body;
-    const userName = user != "" ? user : "AnonymousUser"
+
     try{
-        const userName = user != "" ? user : "AnonymousUser"
-        await Book.findByIdAndUpdate(_id, {$push: {"users.0.user":userName}})
+        await Book.findByIdAndUpdate(_id, {$push: {"users.0.user":user}})
         await Book.findByIdAndUpdate(_id, {$push: {"users.0.review":review}})
     }catch(err){
         console.log(err)

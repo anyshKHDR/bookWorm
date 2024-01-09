@@ -26,7 +26,7 @@ const AddReview = ({_id, newReview, showAddAReview, rerender})=>{
             console.log(review);
             await axios.post("http://localhost:3001/reviews", review);
             rerender();
-            setReview("")
+            setReview({review:"", user:"AnonymousUser"})
         }catch(err){
             console.error(err);
         }
