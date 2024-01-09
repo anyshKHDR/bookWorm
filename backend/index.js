@@ -97,9 +97,6 @@ app.get("/", async(req,res) =>{
 app.post("/submit", async (req,res)=>{
     const data = req.body;
     // console.log(data);
-    console.log(data.publisher);
-    console.log(data.publisher.length);
-    console.log(data.publisher.type);
 
     try{
         const newBook = new Book({
@@ -141,7 +138,6 @@ app.post("/rating", async (req,res)=>{
 app.post("/reviews", async (req,res) =>{
     const {_id, review,user} = req.body;
     const userName = user != "" ? user : "AnonymousUser"
-    console.log(req.body)
     try{
         const userName = user != "" ? user : "AnonymousUser"
         await Book.findByIdAndUpdate(_id, {$push: {"users.0.user":userName}})
@@ -162,6 +158,18 @@ app.patch("/edit/:_id", async (req,res) =>{
         await Book.findByIdAndUpdate(_id, updateData);
     }catch(error){
         console.error(error);
+    }
+    res.redirect("/");
+})
+
+// DELETE request - Book
+app.delete("/delete/:_id", async (req,res) =>{
+    const _id = req.params._id;
+    
+    try{
+        await Book.findByIdAndDelete(_id);
+    }catch(err){
+        console.error(err);
     }
     res.redirect("/");
 })

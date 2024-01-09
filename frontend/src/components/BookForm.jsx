@@ -100,8 +100,8 @@ const BookForm = (props)=> {
                         <input className="formContent" name="rating" type="number" step={0.1} min={1} max={10} placeholder="Your rating out of 10" onChange={handleChange} autoComplete="off"/> 
                         <textarea className="formContent" name="review" id="" cols="" rows="3" style={{height:"auto"}} placeholder="write a review" onChange={handleChange} autoComplete="off"></textarea>
                         <input className="formContent" name="user" type="text" placeholder="Your name (optional)" onChange={handleChange} autoComplete="off"/> 
-                        <button className="btn btn-warning" style={{margin:"10px 0px 0px 15px", float:"left", border:"none"}} onClick={handleCancel}>Cancel</button>                    
-                        <button className="btn btn-success" type="submit" style={{margin:"10px 25px 0px 0px", float:"right"}} >Submit</button>
+                        <button className="btn btn-warning" style={{margin:"auto 0px 5px 15px", float:"left", border:"none"}} onClick={handleCancel}>Cancel</button>                    
+                        <button className="btn btn-success" type="submit" style={{margin:"auto 25px 5px 0px", float:"right"}} >Submit</button>
                     </div>
                 </form>
                 </div>

@@ -10,7 +10,7 @@ const Submitted = ()=>{
     })
     return(
         <div className="confirmationDiv" style={{display:closeSubmit&&"none"}} onAnimationEnd={handleAnimationEnd}>
-            <h1 style={{color:"red", textAlign:"center"}}>Submitted</h1>
+            <h1>Submitted</h1>
         </div>
     )
 }

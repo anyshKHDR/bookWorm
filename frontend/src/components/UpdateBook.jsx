@@ -101,6 +101,22 @@ const UpdateBook = (props)=>{
         }
     }
 
+// handle Delete
+    const handleDelete = async (event)=>{
+        event.preventDefault();
+
+        try{
+            const _id = props._id;
+            handleClose();
+            await axios.delete(`http://localhost:3001/delete/${_id}`)
+
+        }catch(err){
+            console.error(err);
+        }finally{
+            props.rerender();
+        }
+    }
+
     return(
         <div style={{display:"inline", overflow:"hidden"}}>
             <div id="updateBgDiv">
@@ -143,12 +159,21 @@ const UpdateBook = (props)=>{
                             autoComplete="off" 
                         /> 
 
+                        <div className="btnDiv">
                         <button className="btn btn-warning" type="button" onClick={handleClose}
-                            style={{margin:"10px 0px 0px 15px", float:"left", border:"none"}}>Cancel
+                            style={{margin:"20px", border:"none"}}>Cancel
                         </button>                    
 
                         <button className="btn btn-success" type="submit" 
-                            style={{margin:"10px 25px 0px 0px", float:"right"}}>Submit
+                            style={{margin:"20px"}}>Submit
+                        </button>
+
+                        </div>
+
+                        <button type="button" onClick={handleDelete} className="btn btn-danger"
+                            style={{float:"right", margin:"90px 20px auto auto"}}
+                        >
+                            Delete book
                         </button>
 
                     </div>
