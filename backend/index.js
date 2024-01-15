@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
+import { Book } from "./models/bookModel";
+import { User } from "./models/userModel";
 
 const app = express();
 const port = 3001;
@@ -10,43 +12,15 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({limit:'3mb', extended:true}));
 app.use(bodyParser.json({ limit:'3mb'}));
-// app.use(express.json());
 
 app.get('/favicon.ico', (req, res) => {
     res.status(204)
 });
 
-// -------------------------------------------
-
 // connecting to mongodb and creates the DB if it's not exist
 mongoose.connect("mongodb://127.0.0.1:27017/booksDB");
 
-// creating new schema
-const userSchema = new mongoose.Schema({
-    user: [String],
-    rating: [Number],
-    review: [String]
-})
-
-// creating model
-const User = mongoose.model("User", userSchema);
-
-// creating new schema
-const bookSchema = new mongoose.Schema({
-    title: String,
-    author: String,
-    publisher: String,
-    bookImg:String,
-    submitter:String,
-    //schema as a data type
-    users: [userSchema]
-});
-
-// creating model - the "Book" inside the function "model" will be the name of the collection 
-// but the first letter is dropped to lower case and adds "s" at the end to make the collection name plural
-const Book = mongoose.model("Book", bookSchema);
-
-// creating a document using the model "Books"
+// creating documents using the model "Books"
 const book = new Book({
     title:"Legends Of Khasak",
     author:"O.V. Vijayan",
@@ -84,8 +58,6 @@ const book3 = new Book({
     })
 });
 Book.insertMany([book, book2, book3])
-
-// ===========================================
 
 // GET request
 app.get("/", async(req,res) =>{
